@@ -48,3 +48,24 @@ Fix: Added moveToNextAvailable() method that skips indices in unavailable.
 Fix: Adjusted constraints so they align neatly with the balance label and car image.
 Result:
 This iteration satisfies both Non-TextView Widgets and Availability Updates Issues. The app now clearly communicates car status with a Chip, prevents renting unavailable cars, and gives the user control to only browse available cars via a Switch filter.
+
+Iteration 1.3.0 – Favourites & Search Functionality
+Date: 30/09/2025
+Task:
+•	Add the ability to mark cars as favourites and provide quick access to them.
+•	Add a SearchView to filter cars by name or model.
+•	Ensure favourites and search filters work together with existing features: sequential display, renting flow, and availability updates.
+•	Refactor string handling to avoid concatenation and ensure all UI text comes from strings.xml.
+•	Time Spent: ~6 hours
+Challenges / Bugs & Fixes:
+•	Problem: Missing string resource msg_no_matches caused unresolved reference errors.
+Fix: Added msg_no_matches and chip_fav_label strings to strings.xml.
+•	Problem: Used named arguments (resid =, formatArgs =) with Java methods like getString → compilation errors.
+Fix: Switched to positional arguments in getString.
+•	Problem: Lint warnings about text concatenation ("${cars[i].name} • ${cars[i].model}").
+Fix: Introduced %1$s • %2$s in strings.xml and used getString(R.string.chip_fav_label, ...).
+•	Problem: Filter logic didn’t handle empty results gracefully.
+Fix: Added check: if no cars match, Toast shows “No matching cars,” and UI refreshes to prevent crashes.
+Result:
+The app now supports favouriting cars with a dedicated Chip row and searching/filtering cars by name or model. 
+
