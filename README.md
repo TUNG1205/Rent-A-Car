@@ -30,3 +30,21 @@ Result:
 •	Car Model & Sequential Display – cars are represented in a Parcelable class, displayed one at a time, and cycled with a Next button.
 •	Renting Flow & Credit Balance – cars can be rented via a second activity, balance is updated and displayed on the main screen, and invalid rentals are blocked with clear feedback.
 
+Iteration 1.2.0 – Availability Updates & Non-TextView Widgets
+Date: 29/09/2025
+Task:
+•	Introduce non-TextView widgets as required by the assignment.
+•	Add an availability Chip to display whether the current car is “Available” or “Unavailable.”
+•	Add a Switch (“Show available only”) that filters the car list so the Next button skips cars already rented.
+•	Update car availability status dynamically when a rental is confirmed.
+•	Disable the Rent button when a car is marked as unavailable.
+•	Time Spent: ~5 hours
+Challenges / Bugs & Fixes:
+•	Problem: Car status did not refresh after returning from RentActivity.
+Fix: On successful rental, the current index is added to the unavailable set and showCarAt() refreshes UI.
+•	Problem: Next button cycled into unavailable cars when filter was ON.
+Fix: Added moveToNextAvailable() method that skips indices in unavailable.
+•	Problem: Switch and Chip overlapped with other UI in early layout.
+Fix: Adjusted constraints so they align neatly with the balance label and car image.
+Result:
+This iteration satisfies both Non-TextView Widgets and Availability Updates Issues. The app now clearly communicates car status with a Chip, prevents renting unavailable cars, and gives the user control to only browse available cars via a Switch filter.
